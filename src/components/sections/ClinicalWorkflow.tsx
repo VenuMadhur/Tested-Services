@@ -5,7 +5,7 @@ import { clinicalTrialFlow, monitoringFlow } from "../../lib/data";
 
 export default function ClinicalWorkflow() {
   return (
-    <section id="clinical-workflow" className="relative bg-surface py-24 sm:py-32">
+    <section id="clinical-workflow" className="relative bg-slate-50 py-24 sm:py-32">
       <Container>
         <SectionHeading
           eyebrow="Clinical Trial Workflow"

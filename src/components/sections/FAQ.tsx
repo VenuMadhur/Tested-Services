@@ -9,7 +9,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-surface py-24 sm:py-32">
+    <section id="faq" className="relative bg-slate-50 py-24 sm:py-32">
       <Container className="max-w-3xl">
         <SectionHeading
           eyebrow="Frequently Asked Questions"

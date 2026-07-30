@@ -15,6 +15,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("#hero");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -22,6 +23,36 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const ids = ["hero", ...links.map((l) => l.href.slice(1))];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveHref(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
@@ -37,7 +68,7 @@ export default function Navbar() {
           aria-label="Primary"
           className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10"
         >
-          <a href="#hero" className="flex shrink-0 items-center gap-3" aria-label="Tested Services home">
+          <a href="#hero" className="flex shrink-0 flex-col items-start" aria-label="Tested Services home">
             <img
               src="/logo.png"
               alt="Tested Services"
@@ -46,29 +77,44 @@ export default function Navbar() {
               height={25}
             />
             <span
-              className={`hidden border-l pl-3 text-[11px] font-medium leading-tight tracking-wide sm:block ${
-                scrolled ? "border-slate-200 text-slate-500" : "border-white/25 text-slate-200"
+              className={`mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors sm:text-[11px] ${
+                scrolled ? "text-slate-500" : "text-slate-200"
               }`}
             >
-              Clinical
-              <br />
-              Research Solutions
+              Clinical Research Solutions
             </span>
           </a>
 
-          <ul className="hidden items-center gap-8 lg:flex">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className={`text-sm font-medium transition-colors hover:text-emerald-500 ${
-                    scrolled ? "text-slate-650" : "text-slate-100"
-                  }`}
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
+          <ul className="hidden items-center gap-7 lg:flex">
+            {links.map((l) => {
+              const isActive = activeHref === l.href;
+              return (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`relative py-1 text-sm font-medium transition-colors hover:text-emerald-500 ${
+                      isActive
+                        ? scrolled
+                          ? "text-emerald-700"
+                          : "text-emerald-300"
+                        : scrolled
+                          ? "text-slate-650"
+                          : "text-slate-100"
+                    }`}
+                  >
+                    {l.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active-underline"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-emerald-500"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="hidden items-center gap-3 lg:flex">
@@ -87,7 +133,7 @@ export default function Navbar() {
           </div>
 
           <button
-            className={`rounded-lg p-2 lg:hidden ${scrolled ? "text-ink" : "text-white"}`}
+            className={`flex h-11 w-11 items-center justify-center rounded-lg lg:hidden ${scrolled ? "text-ink" : "text-white"}`}
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -106,17 +152,34 @@ export default function Navbar() {
               className="overflow-hidden glass lg:hidden"
             >
               <ul className="flex flex-col gap-1 px-5 pb-5 pt-2">
-                {links.map((l) => (
-                  <li key={l.href}>
-                    <a
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-650 hover:bg-brand-50 hover:text-brand-700"
-                    >
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
+                <li className="mb-1 border-b border-slate-100 pb-3">
+                  <a
+                    href="tel:+919700087691"
+                    className="flex min-h-[44px] items-center gap-2 rounded-lg px-3 text-sm font-semibold text-brand-800"
+                  >
+                    <PhoneCall className="h-4 w-4 text-emerald-600" />
+                    +91 97000 87691
+                  </a>
+                </li>
+                {links.map((l) => {
+                  const isActive = activeHref === l.href;
+                  return (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        onClick={() => setOpen(false)}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`flex min-h-[44px] items-center rounded-lg px-3 text-base font-medium transition-colors ${
+                          isActive
+                            ? "bg-emerald-50 text-emerald-700"
+                            : "text-slate-650 hover:bg-brand-50 hover:text-brand-700"
+                        }`}
+                      >
+                        {l.label}
+                      </a>
+                    </li>
+                  );
+                })}
                 <li className="pt-2">
                   <Button as="a" href="#contact" className="w-full" onClick={() => setOpen(false)}>
                     Request a Proposal

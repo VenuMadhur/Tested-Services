@@ -6,8 +6,29 @@ import { values, timeline } from "../../lib/data";
 
 export default function About() {
   return (
-    <section id="about" className="relative bg-white py-24 sm:py-32">
-      <Container>
+    <section id="about" className="relative overflow-hidden bg-brand-50 py-24 sm:py-32">
+      {/* subtle molecular-inspired background accent */}
+      <svg
+        className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 text-brand-200/60 sm:h-96 sm:w-96"
+        viewBox="0 0 200 200"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle cx="60" cy="60" r="4" fill="currentColor" />
+        <circle cx="140" cy="40" r="4" fill="currentColor" />
+        <circle cx="170" cy="120" r="4" fill="currentColor" />
+        <circle cx="90" cy="150" r="4" fill="currentColor" />
+        <circle cx="30" cy="130" r="4" fill="currentColor" />
+        <line x1="60" y1="60" x2="140" y2="40" stroke="currentColor" strokeWidth="1" />
+        <line x1="140" y1="40" x2="170" y2="120" stroke="currentColor" strokeWidth="1" />
+        <line x1="170" y1="120" x2="90" y2="150" stroke="currentColor" strokeWidth="1" />
+        <line x1="90" y1="150" x2="30" y2="130" stroke="currentColor" strokeWidth="1" />
+        <line x1="30" y1="130" x2="60" y2="60" stroke="currentColor" strokeWidth="1" />
+        <line x1="60" y1="60" x2="170" y2="120" stroke="currentColor" strokeWidth="1" />
+      </svg>
+      <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-emerald-100/50 blur-3xl" />
+
+      <Container className="relative">
         <SectionHeading
           eyebrow="About Tested Services"
           title="Founded in 2020 to raise the standard for contract research"

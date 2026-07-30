@@ -6,8 +6,10 @@ import { consultingServices } from "../../lib/data";
 
 export default function Consulting() {
   return (
-    <section id="consulting" className="relative bg-surface py-24 sm:py-32">
-      <Container>
+    <section id="consulting" className="relative overflow-hidden bg-brand-50 py-24 sm:py-32">
+      <div className="pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full bg-brand-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-emerald-100/50 blur-3xl" />
+      <Container className="relative">
         <SectionHeading
           eyebrow="Consulting Services"
           title="Specialist consulting for the details that determine approval"

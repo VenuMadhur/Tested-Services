@@ -2,19 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { motion, animate, useMotionValue, useTransform, useInView } from "framer-motion";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
+import { WORLD_MAP_PATH, WORLD_MAP_WIDTH, WORLD_MAP_HEIGHT } from "../../lib/worldMapPath";
 
 /* ---------- Coordinate system ----------
-   viewBox is 1000 x 500, mapped from an equirectangular projection
-   (lon -180..180 -> x 0..1000, lat 90..-90 -> y 0..500), so marker
-   positions line up plausibly with the background continents. */
+   Marker positions below were computed directly from the real country
+   geometry in WORLD_MAP_PATH (bounding-box centers of each country's main
+   landmass), so they land precisely on India, Europe, the USA and
+   Australia on this specific map rather than an assumed projection. */
 
 type Point = { x: number; y: number };
 
 const NODES: Record<string, Point & { label: string }> = {
-  usa: { x: 228, y: 150, label: "United States" },
-  europe: { x: 528, y: 112, label: "Europe" },
-  india: { x: 714, y: 176, label: "India" },
-  australia: { x: 872, y: 322, label: "Australia" },
+  usa: { x: 206, y: 347, label: "United States" },
+  europe: { x: 507, y: 305, label: "Europe" },
+  india: { x: 707, y: 399, label: "India" },
+  australia: { x: 849, y: 537, label: "Australia" },
 };
 
 // Visit order requested: India -> Europe -> United States -> Australia -> loop
@@ -186,7 +188,7 @@ export default function GlobalPresence() {
   const litIndex = (key: keyof typeof NODES) => ROUTE.indexOf(key) + 1;
 
   return (
-    <section id="global-presence" className="relative overflow-hidden bg-surface py-24 sm:py-32">
+    <section id="global-presence" className="relative overflow-hidden bg-brand-50 py-24 sm:py-32">
       <Container>
         <SectionHeading
           eyebrow="Global Clinical Research Network"
@@ -194,69 +196,62 @@ export default function GlobalPresence() {
           description="Our vision is to grow into a global leader in clinical research. The network below illustrates the regions our clinical operations and sponsor relationships are extending toward as that vision takes shape."
         />
 
-        <div ref={wrapRef} className="relative mx-auto mt-16 aspect-[2/1] w-full max-w-4xl">
-          <svg
-            viewBox="0 0 1000 500"
-            className="absolute inset-0 h-full w-full"
-            role="img"
-            aria-label="World map illustrating an animated connection between India, Europe, the United States and Australia"
-          >
-            {/* ---- subtle vector world map (stylised, decorative) ---- */}
-            <g fill="#0B7FC4" opacity={0.07}>
-              {/* North America */}
-              <path d="M120 90 C170 70 230 75 265 100 C290 118 300 150 280 180 C300 205 290 235 260 245 C230 255 190 240 175 215 C150 220 120 205 110 175 C95 150 100 115 120 90 Z" />
-              {/* South America */}
-              <path d="M235 260 C260 255 285 270 290 300 C300 340 285 390 260 420 C245 440 220 435 215 405 C205 365 205 320 210 290 C212 275 222 263 235 260 Z" />
-              {/* Europe */}
-              <path d="M470 70 C505 60 545 65 570 85 C585 98 580 118 560 128 C565 145 550 158 530 155 C510 165 488 155 480 135 C465 128 460 105 465 88 C466 80 468 74 470 70 Z" />
-              {/* Africa */}
-              <path d="M470 165 C510 155 555 165 575 195 C595 225 590 265 575 300 C565 330 545 365 520 375 C505 380 495 365 495 345 C475 335 460 305 462 270 C450 240 455 200 470 165 Z" />
-              {/* Asia */}
-              <path d="M590 60 C650 45 730 50 790 75 C840 95 880 120 890 150 C900 175 875 190 850 185 C845 205 815 215 790 205 C760 220 725 210 705 190 C670 195 635 180 615 155 C595 135 585 95 590 60 Z" />
-              {/* Australia */}
-              <path d="M810 300 C845 288 895 292 920 315 C935 330 930 355 910 365 C895 380 860 378 838 365 C815 360 800 340 800 320 C800 312 804 305 810 300 Z" />
-            </g>
+        <div
+          ref={wrapRef}
+          className="relative mx-auto mt-16 w-full max-w-4xl overflow-hidden rounded-[2rem] border border-brand-100 bg-white p-3 shadow-card-hover sm:p-5"
+        >
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
+            <svg
+              viewBox={`0 0 ${WORLD_MAP_WIDTH} ${WORLD_MAP_HEIGHT}`}
+              className="absolute inset-0 h-full w-full"
+              role="img"
+              aria-label="World map illustrating an animated connection between India, Europe, the United States and Australia"
+            >
+              <defs>
+                <radialGradient id="ocean-gradient" cx="35%" cy="30%" r="85%">
+                  <stop offset="0%" stopColor="#F0F9FE" />
+                  <stop offset="55%" stopColor="#DFF1FB" />
+                  <stop offset="100%" stopColor="#C7E4F7" />
+                </radialGradient>
+              </defs>
 
-            {/* faint lat/long grid for a "network" feel */}
-            <g stroke="#0B7FC4" opacity={0.06}>
-              {[80, 160, 240, 320, 400].map((y) => (
-                <line key={y} x1={0} y1={y} x2={1000} y2={y} strokeWidth={1} />
+              {/* ---- ocean backdrop ---- */}
+              <rect x={0} y={0} width={WORLD_MAP_WIDTH} height={WORLD_MAP_HEIGHT} fill="url(#ocean-gradient)" />
+
+              {/* ---- real-geography vector world map ---- */}
+              <path d={WORLD_MAP_PATH} fill="#0B7FC4" fillOpacity={0.32} stroke="#0A5478" strokeOpacity={0.3} strokeWidth={0.6} />
+
+              {/* ---- animated connections ---- */}
+              <Connection id="ie" from={NODES.india} to={NODES.europe} progress={p1} colorFrom="#3DA84B" colorTo="#0B7FC4" />
+              <Connection id="eu" from={NODES.europe} to={NODES.usa} progress={p2} colorFrom="#0B7FC4" colorTo="#3DA84B" />
+              <Connection id="ua" from={NODES.usa} to={NODES.australia} progress={p3} colorFrom="#3DA84B" colorTo="#0B7FC4" />
+
+              {/* ---- markers (drawn after connections so they sit on top) ---- */}
+              {Object.entries(NODES).map(([key, node]) => (
+                <Marker key={key} point={node} active={activeStep >= litIndex(key as keyof typeof NODES)} />
               ))}
-              {[125, 250, 375, 500, 625, 750, 875].map((x) => (
-                <line key={x} x1={x} y1={0} x2={x} y2={500} strokeWidth={1} />
-              ))}
-            </g>
+            </svg>
 
-            {/* ---- animated connections ---- */}
-            <Connection id="ie" from={NODES.india} to={NODES.europe} progress={p1} colorFrom="#3DA84B" colorTo="#0B7FC4" />
-            <Connection id="eu" from={NODES.europe} to={NODES.usa} progress={p2} colorFrom="#0B7FC4" colorTo="#3DA84B" />
-            <Connection id="ua" from={NODES.usa} to={NODES.australia} progress={p3} colorFrom="#3DA84B" colorTo="#0B7FC4" />
-
-            {/* ---- markers (drawn after connections so they sit on top) ---- */}
-            {Object.entries(NODES).map(([key, node]) => (
-              <Marker key={key} point={node} active={activeStep >= litIndex(key as keyof typeof NODES)} />
-            ))}
-          </svg>
-
-          {/* HTML label overlay keeps text a constant, readable size at every viewport */}
-          {Object.entries(NODES).map(([key, node]) => {
-            const active = activeStep >= litIndex(key as keyof typeof NODES);
-            return (
-              <div
-                key={key}
-                className="pointer-events-none absolute -translate-x-1/2 translate-y-2"
-                style={{ left: `${node.x / 10}%`, top: `${node.y / 5}%` }}
-              >
-                <span
-                  className={`whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-semibold shadow-sm transition-colors duration-500 sm:text-xs ${
-                    active ? "bg-emerald-600 text-white" : "bg-white text-slate-500"
-                  }`}
+            {/* HTML label overlay keeps text a constant, readable size at every viewport */}
+            {Object.entries(NODES).map(([key, node]) => {
+              const active = activeStep >= litIndex(key as keyof typeof NODES);
+              return (
+                <div
+                  key={key}
+                  className="pointer-events-none absolute -translate-x-1/2 translate-y-2"
+                  style={{ left: `${(node.x / WORLD_MAP_WIDTH) * 100}%`, top: `${(node.y / WORLD_MAP_HEIGHT) * 100}%` }}
                 >
-                  {node.label}
-                </span>
-              </div>
-            );
-          })}
+                  <span
+                    className={`whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-semibold shadow-sm transition-colors duration-500 sm:text-xs ${
+                      active ? "bg-emerald-600 text-white" : "bg-white text-slate-500"
+                    }`}
+                  >
+                    {node.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Container>
     </section>

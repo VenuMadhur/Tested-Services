@@ -51,8 +51,8 @@ export default function Contact() {
               </div>
               <div className="flex gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-emerald-300" />
-                <a href="mailto:info@testedservices.com" className="text-slate-200 hover:text-white">
-                  info@testedservices.com
+                <a href="mailto:ceo@testedservices.com" className="text-slate-200 hover:text-white">
+                  ceo@testedservices.com
                 </a>
               </div>
             </div>

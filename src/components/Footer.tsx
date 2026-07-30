@@ -30,8 +30,11 @@ export default function Footer() {
       <Container>
         <div className="grid gap-12 pb-16 lg:grid-cols-[1.3fr,1fr,1fr,1fr]">
           <div>
-            <a href="#hero" className="inline-flex items-center rounded-xl bg-white/95 px-4 py-3 shadow-card">
+            <a href="#hero" className="inline-flex flex-col items-start rounded-xl bg-white/95 px-4 py-3 shadow-card">
               <img src="/logo.png" alt="Tested Services" className="h-8 w-auto" width={220} height={25} />
+              <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                Clinical Research Solutions
+              </span>
             </a>
             <p className="mt-5 max-w-xs text-sm leading-relaxed">
               A GxP-compliant contract research partner helping pharmaceutical, biotech and
@@ -77,9 +80,9 @@ export default function Footer() {
               <PhoneCall className="h-4 w-4 text-emerald-400" />
               +91 97000 87691
             </a>
-            <a href="mailto:info@testedservices.com" className="flex items-center gap-2 hover:text-emerald-400">
+            <a href="mailto:ceo@testedservices.com" className="flex items-center gap-2 hover:text-emerald-400">
               <Mail className="h-4 w-4 text-emerald-400" />
-              info@testedservices.com
+              ceo@testedservices.com
             </a>
           </div>
           <div className="mt-6 flex flex-col justify-between gap-3 text-xs text-slate-500 sm:flex-row">

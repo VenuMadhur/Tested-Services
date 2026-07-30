@@ -48,7 +48,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Poppins", "sans-serif"],
+        display: ["Plus Jakarta Sans", "sans-serif"],
         body: ["Inter", "sans-serif"],
       },
       boxShadow: {

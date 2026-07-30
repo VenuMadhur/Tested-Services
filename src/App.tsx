@@ -5,6 +5,7 @@ import About from "./components/sections/About";
 import Services from "./components/sections/Services";
 import Industries from "./components/sections/Industries";
 import GlobalPresence from "./components/sections/GlobalPresence";
+import Experts from "./components/sections/Experts";
 import WhyChooseUs from "./components/sections/WhyChooseUs";
 import ClinicalWorkflow from "./components/sections/ClinicalWorkflow";
 import BEMonitoring from "./components/sections/BEMonitoring";
@@ -25,6 +26,7 @@ export default function App() {
         <Industries />
         <GlobalPresence />
         <WhyChooseUs />
+        <Experts />
         <ClinicalWorkflow />
         <BEMonitoring />
         <GxpAudits />
