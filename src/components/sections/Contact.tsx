@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, PhoneCall, Mail, User, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, PhoneCall, Mail, User, Send, CheckCircle2, Lock } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import Button from "../ui/Button";
@@ -75,37 +75,40 @@ export default function Contact() {
             {submitted ? (
               <div className="flex h-full flex-col items-center justify-center gap-3 py-16 text-center">
                 <CheckCircle2 className="h-12 w-12 text-emerald-500" />
-                <h3 className="font-display text-lg font-semibold text-ink">Message sent</h3>
+                <h3 className="font-display text-lg font-semibold text-ink">Request sent</h3>
                 <p className="max-w-sm text-sm text-slate-650">
-                  Thank you — our team will reach out shortly to discuss your study requirements.
+                  Thank you — our team will reach out shortly to discuss your study requirements and proposal.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="grid gap-5" noValidate>
+              /* Removed noValidate to restore HTML5 native browser validation */
+              <form onSubmit={handleSubmit} className="grid gap-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="text-xs font-semibold text-slate-650">
-                      Full name
+                      Full name <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>
                     </label>
                     <input
                       id="name"
                       name="name"
                       type="text"
                       required
-                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400"
+                      aria-required="true"
+                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10"
                       placeholder="Jane Carter"
                     />
                   </div>
                   <div>
                     <label htmlFor="company" className="text-xs font-semibold text-slate-650">
-                      Company
+                      Company <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>
                     </label>
                     <input
                       id="company"
                       name="company"
                       type="text"
                       required
-                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400"
+                      aria-required="true"
+                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10"
                       placeholder="Sponsor / Organization"
                     />
                   </div>
@@ -113,14 +116,15 @@ export default function Contact() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="email" className="text-xs font-semibold text-slate-650">
-                      Work email
+                      Work email <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>
                     </label>
                     <input
                       id="email"
                       name="email"
                       type="email"
                       required
-                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400"
+                      aria-required="true"
+                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10"
                       placeholder="jane@company.com"
                     />
                   </div>
@@ -132,7 +136,7 @@ export default function Contact() {
                       id="phone"
                       name="phone"
                       type="tel"
-                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400"
+                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10"
                       placeholder="+1 555 000 0000"
                     />
                   </div>
@@ -144,7 +148,7 @@ export default function Contact() {
                   <select
                     id="service"
                     name="service"
-                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400"
+                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10"
                   >
                     <option>Clinical Trials &amp; Bioequivalence</option>
                     <option>GxP Audits</option>
@@ -157,21 +161,33 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="message" className="text-xs font-semibold text-slate-650">
-                    Tell us about your study
+                    Tell us about your study <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
                     required
-                    className="mt-1.5 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400"
+                    aria-required="true"
+                    className="mt-1.5 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10"
                     placeholder="Phase, indication, timelines, target geographies…"
                   />
                 </div>
-                <Button type="submit" className="w-full sm:w-auto">
-                  Send Message
-                  <Send className="h-4 w-4" />
-                </Button>
+                
+                <div className="mt-2 space-y-4">
+                  <Button type="submit" className="w-full sm:w-auto">
+                    Request Proposal
+                    <Send className="h-4 w-4" />
+                  </Button>
+                  
+                  {/* Security reassurance statement for B2B conversions */}
+                  <div className="flex items-center justify-center gap-1.5 sm:justify-start">
+                    <Lock className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                    <p className="text-xs text-slate-500">
+                      Your information is securely transmitted and kept strictly confidential.
+                    </p>
+                  </div>
+                </div>
               </form>
             )}
           </motion.div>

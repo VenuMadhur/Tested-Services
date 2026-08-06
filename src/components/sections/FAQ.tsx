@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
+import Button from "../ui/Button";
 import { faqs } from "../../lib/data";
 
 export default function FAQ() {
@@ -20,21 +21,31 @@ export default function FAQ() {
           {faqs.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div
+              <motion.div
                 key={item.q}
-                className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-colors hover:border-slate-200"
               >
                 <h3>
                   <button
+                    id={`faq-btn-${i}`}
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-panel-${i}`}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    /* 
+                      Padding updated to px-4 sm:px-6 for better mobile rendering.
+                      Hover state added for tactile feedback.
+                    */
+                    className="group flex w-full items-center justify-between gap-4 px-4 py-5 text-left transition-colors hover:bg-slate-50/50 sm:px-6"
                   >
-                    <span className="font-display text-sm font-semibold text-ink sm:text-base">
+                    <span className="font-display text-sm font-semibold text-ink transition-colors group-hover:text-emerald-700 sm:text-base">
                       {item.q}
                     </span>
                     <ChevronDown
+                      aria-hidden="true"
                       className={`h-5 w-5 shrink-0 text-emerald-600 transition-transform duration-300 ${
                         isOpen ? "rotate-180" : ""
                       }`}
@@ -45,20 +56,41 @@ export default function FAQ() {
                   {isOpen && (
                     <motion.div
                       id={`faq-panel-${i}`}
+                      role="region"
+                      aria-labelledby={`faq-btn-${i}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25 }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 pb-6 text-sm leading-relaxed text-slate-650">{item.a}</p>
+                      <p className="px-4 pb-6 text-sm leading-relaxed text-slate-650 sm:px-6">
+                        {item.a}
+                      </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
         </div>
+
+        {/* 
+          CTA Section.
+          Captures users who have finished reading the FAQs or have unanswered questions.
+        */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12 flex justify-center"
+        >
+          <Button as="a" href="#contact" variant="secondary">
+            Have a specific question? Contact us
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </Button>
+        </motion.div>
       </Container>
     </section>
   );
