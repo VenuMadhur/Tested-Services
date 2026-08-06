@@ -22,6 +22,7 @@ import {
   Globe2,
   HeartHandshake,
   BadgeCheck,
+  Droplets,
   type LucideIcon,
 } from "lucide-react";
 
@@ -93,11 +94,31 @@ export const services: Service[] = [
 ];
 
 export const industries = [
-  { title: "Biopharmaceuticals", icon: Syringe },
-  { title: "Pharmaceuticals", icon: Pill },
-  { title: "Nutraceuticals", icon: Leaf },
-  { title: "Cosmetics", icon: Sparkles },
-  { title: "Medical Devices", icon: MonitorCheck },
+  {
+    title: "Biopharmaceuticals",
+    description: "Phase I–IV trials, PK studies & bioequivalence monitoring",
+    icon: Syringe,
+  },
+  {
+    title: "Pharmaceuticals",
+    description: "ANDA support, GMP audits & regulatory submissions",
+    icon: Pill,
+  },
+  {
+    title: "Nutraceuticals",
+    description: "Safety & efficacy trials under GLP compliance",
+    icon: Leaf,
+  },
+  {
+    title: "Cosmetics",
+    description: "Clinical safety, dermatology & consumer product studies",
+    icon: Droplets,
+  },
+  {
+    title: "Medical Devices",
+    description: "IEC-compliant device trials & safety reporting",
+    icon: MonitorCheck,
+  },
 ];
 
 export const values = [
@@ -157,54 +178,126 @@ export const whyChooseUs = [
 export const clinicalTrialFlow = [
   {
     title: "Sign Contract",
-    detail: "CDA, MSA and project-specific contracts are executed to formally begin the engagement.",
+    detail:
+      "CDA, MSA and project-specific contracts are executed to formally begin the engagement. Our project management team ensures all obligations, confidentiality terms and milestone timelines are clearly defined before work commences.",
+    keyActions: [
+      "Confidential Disclosure Agreement (CDA) and Master Service Agreement (MSA) executed",
+      "Project-specific contract with defined milestones and deliverables signed",
+      "Study timeline, sponsor obligations and agreed budget formally documented",
+    ],
   },
   {
     title: "Study Feasibility",
-    detail: "Study synopsis, feasibility assessment and budget preparation shape a realistic plan.",
+    detail:
+      "A thorough feasibility assessment evaluates the study synopsis, site capabilities and patient population availability to build a realistic plan. Our team prepares a detailed budget and confirms timelines before any regulatory work begins.",
+    keyActions: [
+      "Study synopsis reviewed and site feasibility assessment conducted",
+      "Subject recruitment potential and investigator experience evaluated",
+      "Budget prepared with transparent cost breakdown and timeline confirmed",
+    ],
   },
   {
     title: "Protocol & Regulatory",
-    detail: "Protocol development alongside regulatory registration and no-objection certification.",
+    detail:
+      "The study protocol is developed in full alignment with ICH guidelines and applicable regulatory requirements. Regulatory registration and no-objection certification are secured in parallel to prevent delays at later stages.",
+    keyActions: [
+      "Study protocol authored to ICH E6 GCP and applicable regulatory authority guidelines",
+      "Regulatory registration and BE-NOC applications submitted and tracked",
+      "Investigator brochure, IMP documentation and essential study files prepared",
+    ],
   },
   {
     title: "IEC / IRB",
-    detail: "Ethics committee approval secured and the study registered with CTRI.",
+    detail:
+      "Ethics committee approval is secured through a comprehensive IEC/IRB submission package managed by our regulatory team. The study is formally registered with CTRI prior to the first subject's enrolment.",
+    keyActions: [
+      "IEC/IRB submission package compiled, submitted and tracked to approval",
+      "Ethics committee queries formally responded to within agreed timelines",
+      "CTRI registration completed and confirmed before subject screening opens",
+    ],
   },
   {
     title: "Site Monitoring",
-    detail: "Study initiation, ongoing monitoring and close-out executed against protocol.",
+    detail:
+      "Our Clinical Research Associates execute study initiation, periodic monitoring visits and close-out visits against the approved monitoring plan. Protocol adherence, data integrity and GCP compliance are verified and documented at every visit.",
+    keyActions: [
+      "Site Initiation Visit (SIV), ongoing monitoring and close-out visits conducted",
+      "Source document verification, CRF review and protocol deviation tracking at every visit",
+      "Real-time monitoring reports and sponsor updates delivered per the monitoring plan",
+    ],
   },
   {
     title: "Final Report",
-    detail: "Statistical evaluation and the final clinical trial report delivered to the sponsor.",
+    detail:
+      "The biostatistics team performs full pharmacokinetic and statistical evaluation, and the final clinical trial report is authored to ICH E3 standards. All study documents are archived in compliance with GCP and delivered to the sponsor for sign-off.",
+    keyActions: [
+      "Pharmacokinetic and statistical analysis performed to CDISC standards",
+      "Final clinical trial report authored to ICH E3 guidelines",
+      "Study documents archived per GCP requirements and sponsor sign-off obtained",
+    ],
   },
 ];
 
 export const monitoringFlow = [
   {
     title: "Project Allotment",
-    detail: "Monitoring plan prepared, CRA assigned, and SQ/SIV/SMV/SCV visits scheduled.",
+    detail:
+      "The monitoring plan is prepared and a qualified CRA is assigned based on therapeutic area experience and site knowledge. Visit schedules — covering SQ, SIV, SMV and SCV visits — are agreed with the sponsor before any site work begins.",
+    keyActions: [
+      "Monitoring plan prepared, reviewed and approved by the sponsor",
+      "CRA assigned with matched therapeutic area and site experience",
+      "SQ, SIV, SMV and SCV visit schedule confirmed with site and sponsor",
+    ],
   },
   {
     title: "Pre-Study Qualification",
-    detail: "Site assessed against protocol, regulatory and sponsor obligations before selection.",
+    detail:
+      "The site is comprehensively assessed against protocol requirements, regulatory obligations and sponsor quality standards before formal selection. Our CRA evaluates facility readiness, staff qualifications and local patient population.",
+    keyActions: [
+      "Site infrastructure, storage facilities and equipment evaluated against protocol",
+      "Investigator experience, staff qualifications and patient population assessed",
+      "Qualification visit report submitted to sponsor for selection approval",
+    ],
   },
   {
     title: "Study Initiation",
-    detail: "Site readiness confirmed and study prerequisites verified before enrollment opens.",
+    detail:
+      "Site readiness is formally confirmed through a structured initiation visit before the first subject is screened. Our CRA verifies all regulatory approvals, investigational product accountability and essential document completeness.",
+    keyActions: [
+      "Regulatory approvals, IEC documentation and CTRI registration verified on-site",
+      "Investigational product chain-of-custody, storage and accountability confirmed",
+      "Site staff trained on protocol, GCP requirements and data capture procedures",
+    ],
   },
   {
     title: "Study Monitoring",
-    detail: "Ongoing monitoring of trial conduct and protocol execution at site.",
+    detail:
+      "Ongoing monitoring visits are conducted per the approved monitoring plan to verify protocol adherence, data accuracy and GCP compliance at site. All observations and deviations are documented and escalated to the sponsor in real time.",
+    keyActions: [
+      "Source document verification, CRF data review and discrepancy tracking at each visit",
+      "Protocol deviations, safety events and CAPA actions formally documented and tracked",
+      "Monitoring visit reports submitted to sponsor within agreed turnaround timelines",
+    ],
   },
   {
     title: "Study Close-out",
-    detail: "Formal site close-out performed once study activities conclude.",
+    detail:
+      "A formal close-out visit is performed once all study activities conclude at site. Our CRA ensures all outstanding data queries are resolved, investigational product is reconciled and site obligations are formally closed.",
+    keyActions: [
+      "All outstanding queries, deviations and CAPAs resolved before close-out",
+      "Investigational product dispensing, return and reconciliation fully documented",
+      "Site close-out letter issued and essential document archival confirmed",
+    ],
   },
   {
     title: "Report",
-    detail: "Observations, quality compliance and the final report delivered to internal QA.",
+    detail:
+      "A comprehensive monitoring summary report documenting all visit observations, GCP compliance findings and quality metrics is compiled and delivered to internal QA and the sponsor. All CAPA actions are tracked to formal closure.",
+    keyActions: [
+      "Final monitoring report prepared, summarising all visits and quality observations",
+      "GCP compliance summary and deviation metrics formally documented",
+      "All CAPA actions tracked to closure with internal QA sign-off obtained",
+    ],
   },
 ];
 
