@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
+import Button from "../ui/Button";
 import { consultingServices } from "../../lib/data";
 
 export default function Consulting() {
@@ -24,16 +25,29 @@ export default function Consulting() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
-              className="rounded-2xl border-t-4 border-emerald-500 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              /* 
+                Card Styling: 
+                Maintained the `border-t-4 border-emerald-500` accent.
+                Added `border border-slate-100` to standardize the bounding box with 
+                the white-card patterns from Clinical Workflow and BE Monitoring. 
+              */
+              className="rounded-2xl border border-slate-100 border-t-4 border-t-emerald-500 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
             >
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-800 text-white">
-                <service.icon className="h-5 w-5" strokeWidth={2} />
+                {/* Decorative icon hidden from screen readers */}
+                <service.icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
               </span>
               <h3 className="mt-4 font-display text-lg font-semibold text-ink">{service.title}</h3>
-              <ul className="mt-4 space-y-2.5">
+              
+              {/* Added descriptor sentence to bridge the gap between title and technical bullets */}
+              <p className="mb-4 mt-1.5 text-sm leading-relaxed text-slate-500">
+                {service.description}
+              </p>
+
+              <ul className="space-y-2.5">
                 {service.items.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-slate-650">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
@@ -41,6 +55,24 @@ export default function Consulting() {
             </motion.div>
           ))}
         </div>
+
+        {/* 
+          CTA Section: 
+          Captures high-intent sponsors who need consulting services.
+          Uses `Button variant="secondary"` matching the pattern used in other light sections.
+        */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12 flex justify-center"
+        >
+          <Button as="a" href="#contact" variant="secondary">
+            Discuss your consulting needs
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </Button>
+        </motion.div>
       </Container>
     </section>
   );

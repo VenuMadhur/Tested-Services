@@ -302,26 +302,137 @@ export const monitoringFlow = [
 ];
 
 export const beClinicalFlow = [
-  { title: "Site Visit", detail: "Agenda shared with the CRO and pre-study documents reviewed." },
-  { title: "Segregation", detail: "Investigational products dispensed and pharmacy records reviewed." },
-  { title: "Check-In", detail: "Subject check-in monitored and check-in documentation verified." },
-  { title: "Dosing", detail: "Dosing-day activities and dosing documentation monitored in real time." },
-  { title: "Check-Out", detail: "Subject check-out monitored and check-out records reviewed." },
-  { title: "Final Report", detail: "Observations and quality compliance reported to the sponsor." },
+  {
+    title: "Site Visit",
+    detail:
+      "The monitoring visit agenda is shared with the CRO team in advance and all pre-study documents — including the protocol, IEC approval and investigator brochure — are reviewed for completeness. Our CRA confirms site readiness and verifies that investigator qualifications, staff training records and essential documents are in order before clinical activities commence.",
+    keyActions: [
+      "Visit agenda shared and confirmed with CRO site team in advance",
+      "Pre-study documents reviewed: IEC approval, protocol and investigator brochure",
+      "Site readiness and staff qualification records verified against study requirements",
+    ],
+  },
+  {
+    title: "Segregation",
+    detail:
+      "Investigational products are dispensed under monitored conditions and our CRA verifies that pharmacy records, chain-of-custody documentation and temperature-controlled storage comply with the approved protocol and GCP requirements. Randomisation and blinding procedures are confirmed to have been executed correctly before dosing begins.",
+    keyActions: [
+      "IP dispensing, chain-of-custody and pharmacy inventory records reviewed",
+      "Temperature-controlled storage conditions and handling procedures verified",
+      "Randomisation and blinding compliance confirmed against protocol specifications",
+    ],
+  },
+  {
+    title: "Check-In",
+    detail:
+      "Subject check-in is monitored in real time to verify that eligibility criteria, washout periods and informed consent documentation are compliant with the approved protocol and IEC conditions. Our CRA confirms that subject identification, pre-dose medical history review and safety assessments are properly documented.",
+    keyActions: [
+      "Subject eligibility, washout period compliance and informed consent verified",
+      "Pre-dose safety assessments and subject identification records reviewed",
+      "Check-in documentation confirmed complete and GCP-compliant before dosing",
+    ],
+  },
+  {
+    title: "Dosing",
+    detail:
+      "Dosing-day activities are monitored from investigational product administration through to post-dose sample collection to verify that the dosing procedure, blood collection schedule and all associated documentation are executed per protocol. Any deviations from the dosing procedure or sampling timepoints are documented and reported to the sponsor immediately.",
+    keyActions: [
+      "IP administration and post-dose blood collection schedule monitored in real time",
+      "Dosing documentation, sample collection times and actual deviations recorded",
+      "Any dosing irregularities formally documented and escalated per deviation procedures",
+    ],
+  },
+  {
+    title: "Check-Out",
+    detail:
+      "Subject check-out is monitored to confirm that all post-dose safety assessments, adverse event evaluations and discharge documentation are completed in accordance with the approved protocol and GCP requirements. Our CRA verifies that subjects meet all discharge criteria before departure from the clinical site.",
+    keyActions: [
+      "Post-dose safety assessments and adverse event evaluations reviewed and documented",
+      "Subject discharge criteria confirmed per protocol before site departure",
+      "All check-out documentation verified for completeness and GCP compliance",
+    ],
+  },
+  {
+    title: "Final Report",
+    detail:
+      "All clinical-phase monitoring observations, protocol deviations, data discrepancies and GCP compliance findings are compiled into a comprehensive monitoring report. The report is reviewed by internal QA before delivery to the sponsor, with all CAPA actions formally tracked to closure.",
+    keyActions: [
+      "Clinical monitoring observations and protocol deviations compiled and documented",
+      "Final monitoring report reviewed by internal QA before sponsor delivery",
+      "CAPA actions raised during the study formally tracked to closure",
+    ],
+  },
 ];
 
 export const beBioanalyticalFlow = [
-  { title: "Site Visit", detail: "Agenda confirmed with the site and pre-study documents reviewed." },
-  { title: "MD / MV", detail: "Method development and method validation records reviewed." },
-  { title: "Analysis", detail: "Prospective and retrospective monitoring of the analytical phase." },
-  { title: "In-Process", detail: "Batch processing, analytical runs and study-activity flow reviewed." },
-  { title: "Retro", detail: "Raw data, chromatograms, audit trails and ISR data reviewed." },
-  { title: "Report", detail: "Observations and quality compliance reported to the sponsor." },
+  {
+    title: "Site Visit",
+    detail:
+      "The bioanalytical site visit agenda is confirmed with the laboratory team and all pre-study documents — including the bioanalytical plan, method validation protocol and applicable SOPs — are reviewed for completeness. Our CRA verifies laboratory GLP certification status, equipment calibration records and staff training documentation.",
+    keyActions: [
+      "Visit agenda confirmed with bioanalytical laboratory team in advance",
+      "Pre-study documents reviewed: bioanalytical plan, SOPs and GLP certification status",
+      "Equipment calibration records and staff training documentation verified on-site",
+    ],
+  },
+  {
+    title: "Method Validation",
+    detail:
+      "Method development and method validation records are reviewed to confirm that the bioanalytical method meets ICH M10 requirements for accuracy, precision, selectivity, sensitivity and stability. Our CRA verifies that all validation runs, calibration curves and quality control samples meet the pre-defined acceptance criteria documented in the validation protocol.",
+    keyActions: [
+      "Method validation records reviewed against ICH M10 bioanalytical validation guidelines",
+      "Calibration curve performance, QC acceptance and validation run records examined",
+      "Matrix effects, selectivity and stability data confirmed to meet protocol acceptance criteria",
+    ],
+  },
+  {
+    title: "Analysis",
+    detail:
+      "Prospective and retrospective monitoring of the analytical phase is conducted to verify that sample analysis runs, batch acceptance criteria and electronic audit trail records are compliant with the validated method and GLP requirements. Our CRA reviews incurred sample reanalysis (ISR) planning and confirms that sample integrity is maintained throughout the analytical sequence.",
+    keyActions: [
+      "Analytical run records, batch acceptance criteria and electronic audit trails reviewed",
+      "Sample tracking, storage conditions and freeze-thaw cycle documentation confirmed",
+      "ISR planning and sample integrity records verified against protocol requirements",
+    ],
+  },
+  {
+    title: "In-Process",
+    detail:
+      "Batch processing records, analytical run sequences and study-activity flow are reviewed in real time to verify compliance with the validated method and GLP requirements. Our CRA confirms that any analytical deviations, instrument malfunctions or out-of-specification events are properly documented and investigated with CAPA actions initiated.",
+    keyActions: [
+      "Batch processing records and analytical run sequences reviewed for GLP compliance",
+      "Instrument calibration, maintenance logs and system suitability records verified",
+      "Analytical deviations and OOS events documented with CAPA actions formally initiated",
+    ],
+  },
+  {
+    title: "Retrospective Review",
+    detail:
+      "Raw data files, chromatograms, electronic audit trails and incurred sample reanalysis (ISR) data are reviewed retrospectively to confirm analytical reproducibility and data integrity across the full study dataset. Our CRA verifies that all ISR results meet the \u2265\u00a02/3 passing criterion and that raw data is unaltered and protected by a complete audit trail.",
+    keyActions: [
+      "Raw data, chromatograms and electronic audit trails reviewed for complete data integrity",
+      "ISR results verified against the \u2265 2/3 reproducibility acceptance criterion",
+      "Final data package completeness and audit-trail protection confirmed for archival",
+    ],
+  },
+  {
+    title: "Report",
+    detail:
+      "All bioanalytical monitoring observations, GLP compliance findings and quality metrics are compiled into a comprehensive monitoring report covering the full analytical study period. The report is reviewed by internal QA before delivery to the sponsor, with all CAPA actions tracked to closure in readiness for regulatory submission review.",
+    keyActions: [
+      "Bioanalytical monitoring report prepared covering all GLP observations and findings",
+      "Quality compliance metrics and deviation summary reviewed by internal QA",
+      "CAPA actions tracked to closure in preparation for regulatory submission",
+    ],
+  },
 ];
 
 export const auditCategories = [
   {
     title: "Process-Based Audits",
+    description:
+      "Systematic review of operational procedures, SOPs and quality control activities across the clinical research process.",
+    icon: ClipboardCheck,
     items: [
       "Audits of products, services and standard procedures",
       "Regulatory guideline & sponsor obligation checks",
@@ -331,13 +442,21 @@ export const auditCategories = [
   },
   {
     title: "Product & Service Audits",
+    description:
+      "Evaluation of product quality attributes, vendor qualification and service provider GxP compliance.",
+    icon: ScanEye,
     items: [
-      "Quality aspects of the product or service",
-      "Process, system and purpose-based reviews",
+      "Product quality attribute assessment against registered specifications",
+      "Vendor and supplier qualification and GxP compliance review",
+      "Service provider performance audit against contractual and regulatory obligations",
+      "Finished product and packaging material specification compliance",
     ],
   },
   {
     title: "System-Based Audits",
+    description:
+      "Structured review of quality management, risk and information systems against applicable regulatory requirements.",
+    icon: ShieldCheck,
     items: [
       "Quality management systems",
       "Risk management systems",
@@ -347,6 +466,9 @@ export const auditCategories = [
   },
   {
     title: "Purpose-Based Audits",
+    description:
+      "Targeted audits designed for specific regulatory milestones — from pre-inspection readiness to annual surveillance and data integrity.",
+    icon: Search,
     items: [
       "Vendor selection and qualification",
       "System and facility audits",
@@ -370,6 +492,8 @@ export const gxpStandards = [
 export const consultingServices = [
   {
     title: "Regulatory Affairs",
+    description:
+      "End-to-end regulatory strategy and submission management to secure and maintain global approvals.",
     icon: Gavel,
     items: [
       "Aligned to USFDA, UK MHRA, ANVISA, EMA and other global bodies",
@@ -380,6 +504,8 @@ export const consultingServices = [
   },
   {
     title: "Medical Writing",
+    description:
+      "Clear, scientifically rigorous documentation crafted to meet the stringent requirements of regulators and journals.",
     icon: FileSignature,
     items: [
       "World-class writing across therapeutic areas and document types",
@@ -390,6 +516,8 @@ export const consultingServices = [
   },
   {
     title: "Biostatistics",
+    description:
+      "Advanced statistical design and pharmacokinetic analysis to ensure data integrity and submission readiness.",
     icon: LineChart,
     items: [
       "Pharmacokinetic and statistical analysis",
@@ -400,6 +528,8 @@ export const consultingServices = [
   },
   {
     title: "Pharmacovigilance",
+    description:
+      "Comprehensive safety oversight and signal detection across the full product lifecycle, from Phase I to post-marketing.",
     icon: ShieldAlert,
     items: [
       "Safety oversight at every stage of product & device development",
@@ -411,12 +541,42 @@ export const consultingServices = [
 ];
 
 export const pmSteps = [
-  { title: "Quotation", detail: "Get a transparent quotation that fits your budget.", icon: FileText },
-  { title: "Project Initiation", detail: "Investigational products secured and the project formally kicked off.", icon: Building2 },
-  { title: "Enrollment", detail: "Subject enrollment and clinical study initiation begin.", icon: Users },
-  { title: "Bioanalysis", detail: "Bioanalysis of clinical samples performed to protocol.", icon: Microscope },
-  { title: "Biostatistics & Report", detail: "Statistical analysis feeds into the final study report.", icon: LineChart },
-  { title: "Close-out", detail: "End-to-end updates culminate in formal project close-out.", icon: BadgeCheck },
+  {
+    title: "Quotation",
+    detail:
+      "Receive a transparent, milestone-based proposal tailored to your specific protocol requirements. Our project leads ensure accurate forecasting to prevent unexpected scope changes.",
+    icon: FileText,
+  },
+  {
+    title: "Project Initiation",
+    detail:
+      "Formal kick-off aligning all stakeholders on timelines, deliverables, and risk mitigation strategies. Investigational products are secured and facility readiness is verified.",
+    icon: Building2,
+  },
+  {
+    title: "Enrollment",
+    detail:
+      "Subject recruitment and clinical study initiation commence under strict GCP guidelines. Real-time enrollment tracking ensures the study stays on schedule.",
+    icon: Users,
+  },
+  {
+    title: "Bioanalysis",
+    detail:
+      "Clinical samples are processed and analyzed according to the approved protocol and GLP standards. Analytical data is continuously monitored for quality and integrity.",
+    icon: Microscope,
+  },
+  {
+    title: "Biostatistics & Report",
+    detail:
+      "Advanced statistical analysis translates raw data into regulatory-ready insights. Findings are compiled into a comprehensive, compliant clinical study report.",
+    icon: LineChart,
+  },
+  {
+    title: "Close-out",
+    detail:
+      "End-to-end documentation is finalized and the project is formally closed out. All data and trial master files are securely archived and transferred to the sponsor.",
+    icon: BadgeCheck,
+  },
 ];
 
 export const faqs = [
