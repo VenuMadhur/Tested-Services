@@ -7,10 +7,11 @@ import { industries } from "../../lib/data";
 
 export default function Industries() {
   return (
-    <section id="industries" className="relative overflow-hidden bg-ink py-24 sm:py-32">
-      {/* Existing ambient background decorations — unchanged */}
+    <section id="industries" className="relative overflow-hidden bg-premiumCanvas-industries py-24 sm:py-32">
+      <div className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="pointer-events-none absolute -left-20 top-20 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px]" />
       <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-[size:44px_44px] opacity-[0.04]" />
-      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-600/20 blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-emerald-600/10 blur-3xl" />
 
       <Container className="relative">
         <SectionHeading
@@ -41,24 +42,18 @@ export default function Industries() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               /* Last card spans both columns at mobile so it is visually
                  centered rather than left-orphaned. Reset to 1 col at sm+. */
-              className={`glass-dark group flex flex-col items-center gap-4 rounded-2xl border border-white/10 px-6 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/40 hover:bg-white/[0.07] hover:shadow-card${
+              className={`glass-dark group flex flex-col items-center gap-4 rounded-2xl border border-white/10 px-6 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/40 hover:bg-white/[0.07]${
                 i === industries.length - 1 ? " col-span-2 sm:col-span-1" : ""
               }`}
             >
-              {/* Icon container — opacity lifted from /20 to /30 for better
-                  legibility on the dark ink background */}
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/30 to-brand-500/30 text-emerald-300 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-emerald-300 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
                 <ind.icon className="h-7 w-7" strokeWidth={1.75} />
               </span>
 
               <div>
-                {/* Title: upgraded from text-sm to text-base to match the
-                    visual weight of a primary industry label */}
                 <p className="font-display text-base font-semibold text-white">
                   {ind.title}
                 </p>
-                {/* Clinical descriptor — new, gives every card CRO-specific
-                    context without changing the overall design language */}
                 <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
                   {ind.description}
                 </p>

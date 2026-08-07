@@ -12,6 +12,40 @@ const links = [
   { label: "FAQ", href: "#faq" },
 ];
 
+const handleNavClick = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  e.preventDefault();
+  
+  if (setOpen) {
+    setOpen(false);
+  }
+
+  // Allow time for mobile menu to close and body overflow to restore
+  setTimeout(() => {
+    const targetId = href.replace("#", "");
+    if (targetId === "hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      // Navbar is sticky and approx 80px high
+      const offset = 80; 
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  }, setOpen ? 50 : 0);
+};
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -68,7 +102,7 @@ export default function Navbar() {
           aria-label="Primary"
           className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10"
         >
-          <a href="#hero" className="flex shrink-0 flex-col items-start" aria-label="Tested Services home">
+          <a href="#hero" className="flex shrink-0 flex-col items-start" aria-label="Tested Services home" onClick={(e) => handleNavClick(e, "#hero")}>
             <img
               src="/logo.png"
               alt="Tested Services"
@@ -92,6 +126,7 @@ export default function Navbar() {
                 <li key={l.href}>
                   <a
                     href={l.href}
+                    onClick={(e) => handleNavClick(e, l.href)}
                     aria-current={isActive ? "page" : undefined}
                     className={`relative py-1 text-sm font-medium transition-colors hover:text-emerald-500 ${
                       isActive
@@ -127,7 +162,7 @@ export default function Navbar() {
               <PhoneCall className="h-4 w-4 text-emerald-500" />
               +91 97000 87691
             </a>
-            <Button as="a" href="#contact" className="!py-2.5">
+            <Button as="a" href="#contact" className="!py-2.5" onClick={(e) => handleNavClick(e as any, "#contact")}>
               Request a Proposal
             </Button>
           </div>
@@ -167,7 +202,7 @@ export default function Navbar() {
                     <li key={l.href}>
                       <a
                         href={l.href}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => handleNavClick(e, l.href, setOpen)}
                         aria-current={isActive ? "page" : undefined}
                         className={`flex min-h-[44px] items-center rounded-lg px-3 text-base font-medium transition-colors ${
                           isActive
@@ -181,7 +216,7 @@ export default function Navbar() {
                   );
                 })}
                 <li className="pt-2">
-                  <Button as="a" href="#contact" className="w-full" onClick={() => setOpen(false)}>
+                  <Button as="a" href="#contact" className="w-full" onClick={(e) => handleNavClick(e as any, "#contact", setOpen)}>
                     Request a Proposal
                   </Button>
                 </li>

@@ -6,10 +6,10 @@ import { values, timeline } from "../../lib/data";
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden bg-brand-50 py-24 sm:py-32">
+    <section id="about" className="relative overflow-hidden bg-premiumCanvas-about py-24 sm:py-32">
       {/* subtle molecular-inspired background accent */}
       <svg
-        className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 text-brand-200/60 sm:h-96 sm:w-96"
+        className="pointer-events-none absolute -right-16 -top-16 hidden h-72 w-72 text-brand-200/60 sm:h-96 sm:w-96 md:block"
         viewBox="0 0 200 200"
         fill="none"
         aria-hidden="true"
@@ -26,7 +26,7 @@ export default function About() {
         <line x1="30" y1="130" x2="60" y2="60" stroke="currentColor" strokeWidth="1" />
         <line x1="60" y1="60" x2="170" y2="120" stroke="currentColor" strokeWidth="1" />
       </svg>
-      <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-emerald-100/50 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 hidden h-72 w-72 rounded-full bg-emerald-100/50 blur-3xl md:block" />
 
       <Container className="relative">
         <SectionHeading
@@ -41,10 +41,18 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl border border-brand-100 bg-gradient-to-br from-brand-50 to-white p-8 shadow-soft sm:p-10"
+            className="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-card sm:p-10"
           >
-            <Quote className="h-9 w-9 text-emerald-500/40" />
-            <p className="mt-4 font-display text-xl font-medium leading-relaxed text-ink sm:text-2xl">
+            <div className="relative -mx-8 -mt-8 mb-8 overflow-hidden rounded-t-[1.4rem] sm:-mx-10 sm:-mt-10">
+              <img
+                src="/images/about.jpg"
+                alt="Clinical researchers collaborating"
+                className="aspect-video w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <Quote className="absolute bottom-4 left-6 h-8 w-8 text-white/90" />
+            </div>
+            <p className="font-display text-xl font-medium leading-relaxed text-ink sm:text-2xl">
               Ensure efficiency, quality, transparency and confidentiality in every service — and
               become the only choice of global partner for clinical services and expert data
               solutions that meet both current and future developmental needs.
@@ -118,7 +126,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group rounded-2xl border border-slate-100 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+                className="relative rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
               >
                 <span
                   className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${card.accent} text-white shadow-card`}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import Button from "../ui/Button";
@@ -7,8 +7,8 @@ import { auditCategories, gxpStandards } from "../../lib/data";
 
 export default function GxpAudits() {
   return (
-    <section id="gxp-audits" className="relative overflow-hidden bg-ink py-24 sm:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-[size:44px_44px] opacity-[0.04]" />
+    <section id="gxp-audits" className="relative overflow-hidden bg-premiumCanvas-gxp py-24 sm:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-[size:44px_44px] opacity-[0.03]" />
 
       <Container className="relative">
         <SectionHeading
@@ -42,10 +42,10 @@ export default function GxpAudits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 2) * 0.12 }}
-              className="glass-dark group rounded-2xl border border-white/10 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/40 hover:bg-white/[0.07]"
+              className="glass-dark group rounded-2xl border border-white/10 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-orange-400/40 hover:bg-white/[0.07]"
             >
               {/* Per-category icon — visual anchor for fast scanning */}
-              <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
+              <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-orange-400 transition-colors group-hover:bg-orange-500/20 group-hover:text-orange-300">
                 <cat.icon className="h-5 w-5" strokeWidth={1.75} />
               </span>
 
@@ -65,7 +65,7 @@ export default function GxpAudits() {
                     key={item}
                     className="flex items-start gap-2.5 text-sm text-slate-300"
                   >
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                    <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
                     {item}
                   </li>
                 ))}

@@ -10,7 +10,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-slate-50 py-24 sm:py-32">
+    <section id="faq" className="relative bg-premiumCanvas-faq py-24 sm:py-32">
       <Container className="max-w-3xl">
         <SectionHeading
           eyebrow="Frequently Asked Questions"
@@ -27,7 +27,11 @@ export default function FAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-colors hover:border-slate-200"
+                className={`relative overflow-hidden rounded-2xl border transition-all duration-300 ${
+                  open === i
+                    ? "border-emerald-200 bg-white shadow-card"
+                    : "border-slate-200 bg-white shadow-sm hover:border-emerald-200 hover:shadow-soft"
+                }`}
               >
                 <h3>
                   <button
@@ -35,11 +39,9 @@ export default function FAQ() {
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-panel-${i}`}
-                    /* 
-                      Padding updated to px-4 sm:px-6 for better mobile rendering.
-                      Hover state added for tactile feedback.
-                    */
-                    className="group flex w-full items-center justify-between gap-4 px-4 py-5 text-left transition-colors hover:bg-slate-50/50 sm:px-6"
+                    className={`group flex w-full items-center justify-between gap-4 px-4 py-5 text-left transition-colors sm:px-6 ${
+                      open === i ? "bg-emerald-50/50" : "bg-white hover:bg-slate-50"
+                    }`}
                   >
                     <span className="font-display text-sm font-semibold text-ink transition-colors group-hover:text-emerald-700 sm:text-base">
                       {item.q}

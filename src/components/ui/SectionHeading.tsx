@@ -24,11 +24,11 @@ export default function SectionHeading({
       <span
         className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs font-semibold uppercase tracking-wider ${
           light
-            ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
-            : "border-emerald-600/20 bg-emerald-50 text-emerald-700"
+            ? "border-orange-400/30 bg-orange-400/10 text-orange-300"
+            : "border-orange-600/20 bg-orange-50 text-orange-700"
         }`}
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+        <span className={`h-1.5 w-1.5 rounded-full ${light ? "bg-orange-400" : "bg-orange-500"}`} />
         {eyebrow}
       </span>
       <h2

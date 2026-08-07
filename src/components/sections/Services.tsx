@@ -10,7 +10,7 @@ export default function Services() {
   const [featured, ...rest] = services;
 
   return (
-    <section id="services" className="relative bg-white py-24 sm:py-32">
+    <section id="services" className="relative bg-premiumCanvas-services py-24 sm:py-32">
       <Container>
         <SectionHeading
           eyebrow="Featured Services"
@@ -27,32 +27,32 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-700/20 bg-gradient-to-br from-brand-800 via-brand-700 to-emerald-700 p-7 text-left shadow-card-hover transition-all duration-300 hover:-translate-y-1.5 sm:col-span-2 sm:row-span-2 sm:p-8"
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-200 bg-white p-7 text-left shadow-card transition-all duration-300 hover:-translate-y-1.5 sm:col-span-2 sm:row-span-2 sm:p-8"
             aria-expanded={active === featured.slug}
           >
-            <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-            <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-100">
+            <div className="pointer-events-none absolute -right-10 -top-10 hidden h-40 w-40 rounded-full bg-brand-50 blur-2xl md:block" />
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-700">
               <Sparkles className="h-3 w-3" />
               Most requested
             </span>
-            <span className="mt-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-sm">
+            <span className="mt-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 border border-brand-100">
               <featured.icon className="h-7 w-7" strokeWidth={1.75} />
             </span>
-            <h3 className="mt-6 font-display text-xl font-semibold leading-snug text-white sm:text-2xl">
+            <h3 className="mt-6 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
               {featured.title}
             </h3>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-brand-100">{featured.summary}</p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{featured.summary}</p>
 
             <ul className="mt-6 space-y-2.5">
               {featured.points.map((p) => (
-                <li key={p} className="flex items-start gap-2 text-sm font-medium text-white/90">
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-emerald-300" />
+                <li key={p} className="flex items-start gap-2 text-sm font-medium text-slate-700">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand-500" />
                   {p}
                 </li>
               ))}
             </ul>
 
-            <span className="mt-auto flex items-center gap-1 pt-6 text-xs font-semibold text-emerald-200">
+            <span className="mt-auto flex items-center gap-1 pt-6 text-xs font-semibold text-brand-600">
               Explore this service
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
@@ -68,10 +68,10 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
-                className={`group relative flex flex-col rounded-2xl border p-6 text-left shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover ${
+                className={`group relative flex flex-col rounded-2xl border p-6 text-left shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover overflow-hidden ${
                   isActive
-                    ? "border-emerald-300 bg-white ring-2 ring-emerald-400/40"
-                    : "border-slate-100 bg-white"
+                    ? "border-emerald-300 bg-gradient-to-br from-emerald-50 to-white ring-2 ring-emerald-400/40"
+                    : "border-brand-200/60 bg-gradient-to-b from-white to-surface-soft hover:border-brand-300/50"
                 }`}
                 aria-expanded={isActive}
               >

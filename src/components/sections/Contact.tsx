@@ -14,9 +14,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-white py-24 sm:py-32">
-      <Container>
+    <section id="contact" className="relative overflow-hidden bg-premiumCanvas-contact py-24 sm:py-32">
+      <div className="pointer-events-none absolute -left-20 top-40 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl" />
+      <Container className="relative">
         <SectionHeading
+          light
           eyebrow="Contact"
           title="Let's scope your next study"
           description="Tell us about your program and our project management team will respond with next steps and a transparent quotation."
@@ -28,40 +30,46 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl bg-gradient-to-br from-brand-900 to-brand-700 p-8 text-white shadow-card sm:p-10"
+            className="relative overflow-hidden rounded-3xl bg-slate-900/50 p-8 text-white shadow-card ring-1 ring-white/10 sm:p-10"
           >
+            <div className="absolute inset-0 opacity-10 mix-blend-overlay">
+              <img src="/images/contact.jpg" alt="Tested Services Office" className="h-full w-full object-cover" />
+            </div>
+            
+            <div className="relative">
             <h3 className="font-display text-xl font-semibold">Corporate Office</h3>
             <div className="mt-6 space-y-5 text-sm">
               <div className="flex gap-3">
-                <MapPin className="h-5 w-5 shrink-0 text-emerald-300" />
-                <p className="leading-relaxed text-slate-200">
+                <MapPin className="h-5 w-5 shrink-0 text-emerald-400" />
+                <p className="leading-relaxed text-slate-300">
                   Tested Services, Door No. 03-143, Shanthi Nagar, Vanasthalipuram,
                   <br /> Hyderabad, Telangana – 500070, India
                 </p>
               </div>
               <div className="flex gap-3">
-                <User className="h-5 w-5 shrink-0 text-emerald-300" />
-                <p className="text-slate-200">Karunakar Cholleti — CEO &amp; Founder</p>
+                <User className="h-5 w-5 shrink-0 text-emerald-400" />
+                <p className="text-slate-300">Karunakar Cholleti — CEO &amp; Founder</p>
               </div>
               <div className="flex gap-3">
-                <PhoneCall className="h-5 w-5 shrink-0 text-emerald-300" />
-                <a href="tel:+919700087691" className="text-slate-200 hover:text-white">
+                <PhoneCall className="h-5 w-5 shrink-0 text-emerald-400" />
+                <a href="tel:+919700087691" className="text-slate-300 hover:text-white transition-colors">
                   +91 97000 87691
                 </a>
               </div>
               <div className="flex gap-3">
-                <Mail className="h-5 w-5 shrink-0 text-emerald-300" />
-                <a href="mailto:ceo@testedservices.com" className="text-slate-200 hover:text-white">
+                <Mail className="h-5 w-5 shrink-0 text-emerald-400" />
+                <a href="mailto:ceo@testedservices.com" className="text-slate-300 hover:text-white transition-colors">
                   ceo@testedservices.com
                 </a>
               </div>
             </div>
 
             <div className="mt-10 rounded-2xl border border-white/15 bg-white/5 p-5">
-              <p className="text-xs uppercase tracking-wider text-emerald-300">Response Time</p>
-              <p className="mt-1 text-sm text-slate-200">
+              <p className="text-xs uppercase tracking-wider text-emerald-400 font-semibold">Response Time</p>
+              <p className="mt-1 text-sm text-white">
                 Proposals are typically returned within 2 business days.
               </p>
+            </div>
             </div>
           </motion.div>
 
@@ -69,8 +77,8 @@ export default function Contact() {
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-            className="rounded-3xl border border-slate-100 bg-surface p-8 shadow-soft sm:p-10"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-card sm:p-10"
           >
             {submitted ? (
               <div className="flex h-full flex-col items-center justify-center gap-3 py-16 text-center">

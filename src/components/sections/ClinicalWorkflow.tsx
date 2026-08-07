@@ -35,7 +35,7 @@ const workflows = [
 
 export default function ClinicalWorkflow() {
   return (
-    <section id="clinical-workflow" className="relative bg-slate-50 py-24 sm:py-32">
+    <section id="clinical-workflow" className="relative bg-premiumCanvas-process py-24 sm:py-32">
       <Container>
         <SectionHeading
           eyebrow="Clinical Trial Workflow"
@@ -57,7 +57,7 @@ export default function ClinicalWorkflow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="rounded-2xl border border-slate-100 bg-white p-8 shadow-soft sm:p-10"
+              className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover sm:p-10"
             >
               {/* Block header: coloured accent bar + workflow title */}
               <div className="flex items-center gap-3">

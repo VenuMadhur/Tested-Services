@@ -44,6 +44,12 @@ export default function WorkflowStepper({
     },
   }[accent];
 
+  const getDotColor = (isActive: boolean, isDone: boolean) => 
+    isActive ? "bg-orange-500" : isDone ? "bg-emerald-600" : "bg-slate-300";
+    
+  const getTextColor = (isActive: boolean, isDone: boolean) =>
+    isActive ? "text-orange-600" : isDone ? "text-emerald-700" : "text-slate-500";
+
   return (
     <div>
       {/* ── MOBILE: vertical stepper (< sm) ──────────────────────────────────
@@ -75,9 +81,7 @@ export default function WorkflowStepper({
               {/* Numbered dot — visual indicator only (aria-hidden) */}
               <div
                 aria-hidden="true"
-                className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white transition-colors duration-300 ${
-                  isActive || isDone ? c.dot : "bg-slate-300"
-                }`}
+                className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white transition-colors duration-300 ${getDotColor(isActive, isDone)}`}
               >
                 {i + 1}
               </div>
@@ -88,9 +92,7 @@ export default function WorkflowStepper({
                 aria-selected={isActive}
                 aria-controls={panelId}
                 onClick={() => setActive(i)}
-                className={`pt-1 text-left text-sm font-semibold leading-snug transition-colors duration-200 ${
-                  isActive ? c.text : "text-slate-500"
-                }`}
+                className={`pt-1 text-left text-sm font-semibold leading-snug transition-colors duration-200 ${getTextColor(isActive, isDone)}`}
               >
                 {step.title}
               </button>
@@ -111,7 +113,7 @@ export default function WorkflowStepper({
           />
           {/* Animated progress fill */}
           <motion.div
-            className={`absolute left-0 top-5 h-[3px] rounded-full bg-gradient-to-r ${c.bar}`}
+            className={`absolute left-0 top-5 h-[3px] rounded-full bg-emerald-500`}
             initial={false}
             animate={{ width: `${(active / (steps.length - 1)) * 100}%` }}
             transition={{ duration: 0.4, ease: "easeOut" }}
@@ -135,16 +137,12 @@ export default function WorkflowStepper({
                     aria-selected={isActive}
                     aria-controls={panelId}
                     onClick={() => setActive(i)}
-                    className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold text-white transition-all duration-300 ${
-                      isActive || isDone ? c.dot : "bg-slate-300"
-                    } ${isActive ? `ring-4 ${c.ring}` : ""}`}
+                    className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold text-white transition-all duration-300 ${getDotColor(isActive, isDone)} ${isActive ? 'ring-4 ring-orange-400/40' : ''}`}
                   >
                     {i + 1}
                   </button>
                   <span
-                    className={`mt-3 max-w-[7.5rem] text-xs font-semibold leading-snug transition-colors ${
-                      isActive ? c.text : "text-slate-500"
-                    }`}
+                    className={`mt-3 max-w-[7.5rem] text-xs font-semibold leading-snug transition-colors ${getTextColor(isActive, isDone)}`}
                   >
                     {step.title}
                   </span>

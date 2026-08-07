@@ -188,8 +188,9 @@ export default function GlobalPresence() {
   const litIndex = (key: keyof typeof NODES) => ROUTE.indexOf(key) + 1;
 
   return (
-    <section id="global-presence" className="relative overflow-hidden bg-brand-50 py-24 sm:py-32">
-      <Container>
+    <section id="global-presence" className="relative overflow-hidden bg-premiumCanvas-global py-24 sm:py-32">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(#0B3B6B 1.5px, transparent 1.5px)", backgroundSize: "24px 24px" }} />
+      <Container className="relative">
         <SectionHeading
           eyebrow="Global Clinical Research Network"
           title="Built to support sponsors across borders"
@@ -243,7 +244,7 @@ export default function GlobalPresence() {
                 >
                   <span
                     className={`whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-semibold shadow-sm transition-colors duration-500 sm:text-xs ${
-                      active ? "bg-emerald-600 text-white" : "bg-white text-slate-500"
+                      active ? "bg-orange-500 text-white" : "bg-white text-slate-500"
                     }`}
                   >
                     {node.label}

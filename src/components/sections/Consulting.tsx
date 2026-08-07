@@ -7,9 +7,9 @@ import { consultingServices } from "../../lib/data";
 
 export default function Consulting() {
   return (
-    <section id="consulting" className="relative overflow-hidden bg-brand-50 py-24 sm:py-32">
-      <div className="pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full bg-brand-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-emerald-100/50 blur-3xl" />
+    <section id="consulting" className="relative overflow-hidden bg-premiumCanvas-consulting py-24 sm:py-32">
+      <div className="pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full bg-orange-500/5 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-brand-500/5 blur-3xl" />
       <Container className="relative">
         <SectionHeading
           eyebrow="Consulting Services"
@@ -27,13 +27,12 @@ export default function Consulting() {
               transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
               /* 
                 Card Styling: 
-                Maintained the `border-t-4 border-emerald-500` accent.
-                Added `border border-slate-100` to standardize the bounding box with 
-                the white-card patterns from Clinical Workflow and BE Monitoring. 
+                Replaced generic slate border with a subtle brand orange tint,
+                reflecting the PPT's orange-outlined consulting cards.
               */
-              className="rounded-2xl border border-slate-100 border-t-4 border-t-emerald-500 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              className="relative overflow-hidden rounded-2xl border border-orange-100/60 border-t-4 border-t-orange-500 bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-orange-300/60"
             >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-800 text-white">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                 {/* Decorative icon hidden from screen readers */}
                 <service.icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
               </span>
